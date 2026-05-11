@@ -11,3 +11,4 @@ static/ui/discord.svg
 .autosave
 .wav
 !static/sounds/music/*.wav
+vite-dev.*.log
