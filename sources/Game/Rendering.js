@@ -37,10 +37,16 @@ export class Rendering
 
     async setRenderer()
     {
+        const rendererPreference = new URLSearchParams(location.search).get('renderer')
+        const wantsWebGPU = rendererPreference === 'webgpu' || location.hash.match(/webgpu/i)
+        const wantsWebGL = rendererPreference === 'webgl' || location.hash.match(/webgl/i)
+        const isWindows = navigator.userAgentData?.platform === 'Windows' || /Windows/i.test(navigator.userAgent)
+        const forceWebGL = wantsWebGL || (isWindows && !wantsWebGPU)
+
         this.renderer = new THREE.WebGPURenderer({
             canvas: this.game.canvasElement,
             powerPreference: 'high-performance',
-            forceWebGL: false,
+            forceWebGL,
             antialias: this.game.viewport.pixelRatio < 2
         })
         this.renderer.setSize(this.game.viewport.width, this.game.viewport.height)
