@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+dist
+resources
+static/projects/images/threejs-journey*
+static/lab/images/threejs-journey*
+static/ui/discord.svg
+.vercel
+.VSCodeCounter
+.env*
+.autosave
+.wav
+!static/sounds/music/*.wav
