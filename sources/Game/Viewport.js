@@ -15,13 +15,15 @@ export class Viewport
     measure()
     {
         const bounding = this.domElement.getBoundingClientRect()
+        const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1
+        const isMobile = isIPadOS || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
 
         this.width = bounding.width
         this.height = bounding.height
         this.ratio = this.width / this.height
 
         this.pixelRatioPure = window.devicePixelRatio
-        this.pixelRatioMax = 2
+        this.pixelRatioMax = isMobile ? 1.5 : 2
         this.pixelRatio = Math.min(this.pixelRatioPure, this.pixelRatioMax)
     }
 

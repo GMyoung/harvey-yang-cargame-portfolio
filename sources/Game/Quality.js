@@ -9,7 +9,8 @@ export class Quality
 
         this.events = new Events()
 
-        const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+        const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1
+        const isMobile = isIPadOS || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
         this.level = isMobile ? 1 : 0 // 0 = highest quality
 
         // Debug
